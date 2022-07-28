@@ -4,9 +4,8 @@ import discord
 from discord.ext.commands import Bot, errors
 from discord.ext import commands
 import aiohttp
-
-async def done(ctx, message):
-    await ctx.send(embed=discord.Embed(title=":white_check_mark: Done", description=str(message), color=discord.Color.green()))
+async def info(ctx, title, description):
+    await ctx.send(embed=discord.Embed(title=title, description=description, color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url))
 class Fun(commands.Cog):
     """Fun commands"""
     def __init__(self, bot):
@@ -19,7 +18,7 @@ class Fun(commands.Cog):
             async with session.get(f"https://username-gen.herokuapp.com/") as resp:
                 username = await resp.json(content_type=None)
                 await ctx.author.edit(nick=username["username"])
-                await done(ctx, "Changed your nickname to `" + username + "`")
+                await info(ctx, ":tada: Nickname Changed", "Changed your nickname to `" + username + "`")
     @commands.command(name="8ball", aliases=['8b'], brief="Answers a question", description="Answers a question with a random answer.")
     async def eightball(self, ctx, *, question):
         ">8ball <question>"
@@ -46,25 +45,25 @@ class Fun(commands.Cog):
             "Outlook not so good.",
             "Very doubtful."
         ]
-        await ctx.send(embed=discord.Embed(title=":8ball: 8ball", description=f"Question: {question}\nAnswer: {random.choice(answers)}", color=discord.Color.blue()))
+        await info(ctx, "8ball", f"Question: {question}\nAnswer: {random.choice(answers)}")
     @commands.command(name="roll", aliases=['dice', 'random'], brief="Rolls a dice", description="Rolls a dice.")
     async def roll(self, ctx, *, dice=None):
         ">roll <dice>"
         await ctx.message.delete()
         if dice.isdigit() and int(dice) > 0 and dice is not None:
-            await ctx.send(embed=discord.Embed(title=":game_die: Dice", description=f"You rolled a {random.randint(1, int(dice))}", color=discord.Color.blue()))
+            await info(ctx, "Roll", f"You rolled a `{random.randint(1, int(dice))}`")
         else:
-            await ctx.send(embed=discord.Embed(title=":game_die: Dice", description=f"You rolled a {random.randint(1, 6)}", color=discord.Color.blue()))
+            await info(ctx, "Roll", f"You rolled a {random.randint(1, 6)}")
     @commands.command(name="flip", aliases=['coin'], brief="Flips a coin", description="Flips a coin.")
     async def flip(self, ctx):
         ">flip"
         await ctx.message.delete()
-        await ctx.send(embed=discord.Embed(title=":game_die: Coin", description=f"You flipped a {random.choice(['heads', 'tails'])}", color=discord.Color.blue())) 
+        await info(ctx, "Flip", f"You flipped a `{random.choice(['heads', 'tails'])}`")
     @commands.command(name="dicksize", aliases=['dick, dicklength'], brief="Gets the size of your dick")
     async def dicksize(self, ctx):
         ">dicksize"
         await ctx.message.delete()
-        await ctx.send(embed=discord.Embed(title=":eggplant: Dick", description=f"You measured your dick and your size was: {random.randint(1,20)} inches long!", color=discord.Color.blue()))
+        await info(ctx, ":eggplant: Dick", f"You measured your dick and your size was `{random.randint(1,20)}` inches long!")
 def setup(bot):
     bot.add_cog(Fun(bot))
     print("Fun cog loaded")

@@ -50,7 +50,7 @@ class Help(commands.Cog):
                     cogs_desc += f'`{cog}` {self.bot.cogs[cog].__doc__}\n'
 
             emb.add_field(name='Modules', value=cogs_desc, inline=False)
-
+            emb.set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url)
             commands_desc = ''
             for command in self.bot.walk_commands():
                 if not command.cog_name and not command.hidden:

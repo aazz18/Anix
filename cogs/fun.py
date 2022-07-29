@@ -10,7 +10,7 @@ class Fun(commands.Cog):
     """Fun commands"""
     def __init__(self, bot):
         self.bot = bot
-    @commands.command(name="usernamegen", aliases=['username', 'user', 'nickname'], brief="Generates a random username", description="Generates a random username and applies to your nickname.")
+    @commands.command(name="usernamegen", aliases=['username', 'user', 'nickname'], brief="Generates a random username and applies to your nickname.", description="Generates a random username and applies to your nickname.")
     async def usernamegen(self, ctx):
         ">usernamegen"
         await ctx.message.delete()

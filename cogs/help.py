@@ -74,7 +74,7 @@ class Help(commands.Cog):
 
             else:
                 for command in self.bot.walk_commands():
-                    if command.name.lower() == module.lower().splitlines()[0] and not command.hidden:
+                    if command.name.lower() == module.lower().splitlines()[0] and not command.hidden and not command.name.lower() == 'cog' and not command.name.lower() == 'uncog' and not command.name.lower() == 'reloadcog' and not command.name.lower() == 'nuke':
                         emb = discord.Embed(title=f'{command.name}', description=f"`{command.help}`", color=specific_color, inline=False)
                         emb.add_field(name=f"{command.brief}", value=command.brief, inline=False)
                         break

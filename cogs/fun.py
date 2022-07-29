@@ -64,7 +64,6 @@ class Fun(commands.Cog):
         ">dicksize"
         await ctx.message.delete()
         await info(ctx, ":eggplant: Dick", f"You measured your dick and your size was `{random.randint(1,20)}` inches long!")
-    @commands.command
 def setup(bot):
     bot.add_cog(Fun(bot))
     print("Fun cog loaded")

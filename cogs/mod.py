@@ -16,6 +16,14 @@ class Mod(commands.Cog):
     """Moderation commands"""
     def __init__(self,bot):
         self.bot = bot
+    @commands.command(name='spam_dm', aliases=['spam', 'dmspam'], brief='Spam DM a user', description='Spam DM a user')
+        """>spam_dm <user> <amount>"""
+        await ctx.message.delete()
+        if ctx.author.guild_permissions.administrator:
+            for i in range(amount):
+                await bad_info_dm(user, "You are been spammed by a moderator", None)
+        else:
+            await bad_info_channel(ctx, "You do not have the required permissions to use this command.", None)
     @commands.command(name='kick', aliases=['k'], brief='Kicks a user from the server')
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):

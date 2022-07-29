@@ -39,7 +39,7 @@ class Startup(commands.Cog):
                 await guild.leave()
                 # error for 
                 print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')  
-            except discord.ext.commands.GuildNotFound:
+            except discord.errors.Forbidden:
                 print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Kicked or have been banned")
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):

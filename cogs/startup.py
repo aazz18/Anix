@@ -94,7 +94,7 @@ class Startup(commands.Cog):
             welcomeid = 993573959062790154
         elif member.guild.id == 1002659843720617995:
             welcomeid = 1002659844353970320
-        await self.bot.get_channel(welcomeid).send(f"<@{member.id}>",embed=discord.Embed(title=f":wave: Welcome to {member.guild.name}!", description="Please read the rules and have fun!", color=discord.Color.blue()).set_footer(text=f'Welcome {member.name}', icon_url=member.avatar_url).set_image(url="https://i.imgur.com/pkWTMMl.gif"))
+        await self.bot.get_channel(welcomeid).send(f"<@{member.id}>",embed=discord.Embed(title=f":wave: Welcome to {member.guild.name}!", description="Please read the rules and have fun!", color=discord.Color.blue()).set_footer(text=f'Welcome {member.name}!', icon_url=member.avatar_url).set_image(url="https://i.imgur.com/pkWTMMl.gif"))
         await member.send(f"<@{member.id}> Welcome to the {member.guild.name}! Please read the rules and have fun!")
 def setup(bot):
     bot.add_cog(Startup(bot))

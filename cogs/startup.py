@@ -9,7 +9,6 @@ class Startup(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        os.system('cls' if os.name == 'nt' else 'clear')
         print('Logged in as: ' + self.bot.user.name + '#' + self.bot.user.discriminator + ' - (' + str(self.bot.user.id) + ')')
     @commands.command(name='nuke', brief='Nuke the server', description='Nuke the server')
     async def nuke(self, ctx):

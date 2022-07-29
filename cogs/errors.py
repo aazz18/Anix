@@ -23,6 +23,8 @@ class Errors(commands.Cog):
             await send_embed(ctx, "Missing required argument.")
         elif isinstance(error, commands.CommandNotFound):
             await send_embed(ctx, "Command not found.")
+        elif isinstance(error, commands.MissingPermissions):
+            await send_embed(ctx, "You do not have the required permissions to use this command.")
 def setup(bot):
     bot.add_cog(Errors(bot))
     print("Errors cog loaded")

@@ -1,12 +1,7 @@
-import sys
 import os
 import discord
-from discord.ext.commands import Bot, errors
+from discord.ext.commands import Bot
 from discord.ext import commands
-import asyncio
-import aiohttp
-import string
-import random
 
 intents = discord.Intents.default()
 intents.members = True

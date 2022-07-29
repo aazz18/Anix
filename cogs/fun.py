@@ -1,5 +1,4 @@
 import random
-import os
 import discord
 from discord.ext.commands import Bot, errors
 from discord.ext import commands

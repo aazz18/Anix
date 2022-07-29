@@ -14,7 +14,7 @@ async def bad_info_channel(ctx, message,link):
     await ctx.send(embed=discord.Embed(title=f":x: {message}", color=discord.Color.red()).set_image(url=link).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
 
 class Mod(commands.Cog):
-    """"""
+    """Moderation commands"""
     def __init__(self,bot):
         self.bot = bot
     @commands.command(name='kick', aliases=['k'], brief='Kicks a user from the server')

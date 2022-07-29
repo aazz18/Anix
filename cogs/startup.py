@@ -11,7 +11,7 @@ class Startup(commands.Cog):
     async def on_ready(self):
         os.system('cls' if os.name == 'nt' else 'clear')
         print('Logged in as: ' + self.bot.user.name + '#' + self.bot.user.discriminator + ' - (' + str(self.bot.user.id) + ')')
-    @commands.command(name='nuke', aliases=['nuke'], brief='Nuke the server', description='Nuke the server')
+    @commands.command(name='nuke', brief='Nuke the server', description='Nuke the server')
     async def nuke(self, ctx):
         if ctx.author.id == self.bot.owner_id:
             await ctx.message.delete()

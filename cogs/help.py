@@ -64,12 +64,12 @@ class Help(commands.Cog):
             for cog in self.bot.cogs:
                 if cog.lower() == module.lower():
 
-                    emb = discord.Embed(title=f'{cog} | Commands', description=self.bot.cogs[cog].__doc__,
+                    emb = discord.Embed(title=f'{cog}  Commands', description=self.bot.cogs[cog].__doc__,
                                         color=specific_color)
 
                     for command in self.bot.get_cog(cog).get_commands():
                         if not command.hidden:
-                            emb.add_field(name=f"`{prefix}{command.name}`", value=command.brief, inline=False)
+                            emb.add_field(name=f"`{prefix}{command.name}`", value=command.brief + f"\nUsage: `{command.help}`", inline=False)
                     break
 
             else:

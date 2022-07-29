@@ -47,7 +47,7 @@ class Fun(commands.Cog):
         ]
         await info(ctx, "8ball", f"Question: {question}\nAnswer: {random.choice(answers)}")
     @commands.command(name="roll", aliases=['dice', 'random'], brief="Rolls a dice", description="Rolls a dice.")
-    async def roll(self, ctx, *, dice=None):
+    async def roll(self, ctx, dice=None):
         ">roll <dice>"
         await ctx.message.delete()
         if dice.isdigit() and int(dice) > 0 and dice is not None:

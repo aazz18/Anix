@@ -11,7 +11,7 @@ import random
 intents = discord.Intents.default()
 intents.members = True
 
-bot = commands.Bot(command_prefix='>', description='A bot for the Discord server', case_insensitive=True, activity=discord.Activity(type=discord.ActivityType.watching, name="<3"), owner_id=975641516431265812)
+bot = commands.Bot(command_prefix='>', description='A bot for the Discord server', case_insensitive=True, activity=discord.Activity(type=discord.ActivityType.watching, name="<3"), owner_id=975641516431265812, intents=intents)
 bot.remove_command('help')
 
 async def isowner(ctx):

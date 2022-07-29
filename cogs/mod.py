@@ -17,6 +17,7 @@ class Mod(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
     @commands.command(name='spam_dm', aliases=['spam', 'dmspam'], brief='Spam DM a user', description='Spam DM a user')
+    async def spamming(self, ctx, user: discord.Member, amount: 5):
         """>spam_dm <user> <amount>"""
         await ctx.message.delete()
         if ctx.author.guild_permissions.administrator:

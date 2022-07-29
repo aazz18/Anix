@@ -52,7 +52,7 @@ class Help(commands.Cog):
             emb.add_field(name='Modules', value=cogs_desc, inline=False)
             commands_desc = ''
             for command in self.bot.walk_commands():
-                if not command.cog_name and not command.hidden:
+                if not command.cog_name and not command.hidden and command.name != 'cog' and command.name != 'uncog' and command.name != 'reloadcog':
                     commands_desc += f'{command.name} | {command.brief}\n'
 
             if commands_desc:

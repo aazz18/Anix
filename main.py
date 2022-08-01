@@ -31,6 +31,14 @@ async def cog(ctx, extension):
         except commands.errors.ExtensionNotLoaded:
             await not_found(ctx, extension)
     return
+@bot.command(name='clear_owner', description='Clears messages', brief='Clears messages')
+async def clear_owner(ctx, amount=5):
+    """>clear_owner <amount> - Owner only"""
+    await ctx.message.delete()
+    if await isowner(ctx):
+        await ctx.channel.purge(limit=amount)
+        await done(ctx, f'Cleared {amount} messages')
+    return
 @bot.command(name='uncog', description='Unloads a cog', brief='Unloads a cog')
 async def uncog(ctx, extension):
     """>uncog <cog> - Owner only"""

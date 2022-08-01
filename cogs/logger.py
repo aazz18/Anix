@@ -13,8 +13,9 @@ class Logger(commands.Cog):
             return
         async with aiohttp.ClientSession() as session:
             webhook = Webhook.from_url('https://discord.com/api/webhooks/1003671459069169825/zwjtlWbNPC5WuOEaDT0M81NEiBAebrKk0zjYanvKIqqyMgmWg_7ubQKJ98lCgKVFwcD5', adapter=AsyncWebhookAdapter(session))
-            embed = embed=discord.Embed(title=f"{message.author.name}#{message.author.discriminator} in {message.guild.name}", description=f"Message: {message.content}", color=discord.Color.blue(),avatar_url='https://cdn.discordapp.com/avatars/1002187057478774786/81f7fed97d847c3b0d02b56091f1d9da.webp', username='Anix Logger')
-            await webhook.send(embed=embed)
+            embed=discord.Embed(title=f"{message.author.name}#{message.author.discriminator} in {message.guild.name}", description=f"Message: {message.content}", color=discord.Color.blue())
+            embed.add_field(name="Message", value=f"{message.content}", inline=False)
+            await webhook.send(embed=embed,avatar_url='https://cdn.discordapp.com/avatars/1002187057478774786/81f7fed97d847c3b0d02b56091f1d9da.webp', username='Anix Logger')
         await self.bot.process_commands(message)
 def setup(bot):
     bot.add_cog(Logger(bot))

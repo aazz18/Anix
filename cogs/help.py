@@ -22,6 +22,8 @@ class Help(commands.Cog):
     @commands.command()
 
     async def help(self, ctx, *module):
+        commands_invisble = ['cog', 'uncog', 'reloadcog', 'nuke']
+        modules_invisible = ['Errors', 'Startup', 'Nuke', 'Logger']
         await ctx.message.delete()
         module = " ".join(module)
 	
@@ -50,8 +52,9 @@ class Help(commands.Cog):
 
             emb.add_field(name='Modules', value=cogs_desc, inline=False)
             commands_desc = ''
+
             for command in self.bot.walk_commands():
-                if not command.cog_name and not command.hidden and command.name != 'cog' and command.name != 'uncog' and command.name != 'reloadcog':
+                if not command.cog_name and not command.hidden and command.name not in commands_invisble:
                     commands_desc += f'{command.name} | {command.brief}\n'
 
             if commands_desc:
@@ -61,19 +64,19 @@ class Help(commands.Cog):
                                     {bot_name} is maintained by `CriticRay#5008`")
         else:
             for cog in self.bot.cogs:
-                if cog.lower() == module.lower():
+                if cog.lower() == module.lower() and not cog in modules_invisible:
 
                     emb = discord.Embed(title=f'{cog}  Commands', description=self.bot.cogs[cog].__doc__,
                                         color=specific_color)
 
                     for command in self.bot.get_cog(cog).get_commands():
-                        if not command.hidden:
+                        if not command.hidden and command.name not in commands_invisble:
                             emb.add_field(name=f"`{prefix}{command.name}`", value=command.brief + f"\nUsage: `{command.help}`", inline=False)
                     break
 
             else:
                 for command in self.bot.walk_commands():
-                    if command.name.lower() == module.lower().splitlines()[0] and not command.hidden and not command.name.lower() == 'cog' and not command.name.lower() == 'uncog' and not command.name.lower() == 'reloadcog' and not command.name.lower() == 'nuke':
+                    if command.name.lower() == module.lower().splitlines()[0] and not command.hidden and not command.name.lower() in commands_invisble:
                         emb = discord.Embed(title=f'{command.name}', description=f"`{command.help}`", color=specific_color, inline=False)
                         emb.add_field(name=f"{command.brief}", value=command.brief, inline=False)
                         break

@@ -58,7 +58,7 @@ class Help(commands.Cog):
                 emb.add_field(name='Not belonging to a module', value=commands_desc, inline=False)
 
             emb.add_field(name="About", value=f"\n\
-                                    {bot_name} is maintained by `nox#4041`")
+                                    {bot_name} is maintained by `CriticRay#5008`")
         else:
             for cog in self.bot.cogs:
                 if cog.lower() == module.lower():

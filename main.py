@@ -37,7 +37,7 @@ async def clear_owner(ctx, amount=5):
     await ctx.message.delete()
     if await isowner(ctx):
         await ctx.channel.purge(limit=amount)
-        await done(ctx, f'Cleared {amount} messages')
+        await ctx.send(embed=discord.Embed(title=f":white_check_mark: {amount} messages have been deleted", color=discord.Color.green()).set_image(url="https://c.tenor.com/2T_mpBdB1kgAAAAM/discord-delete-message.gif").set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url), delete_after=5)
     return
 @bot.command(name='uncog', description='Unloads a cog', brief='Unloads a cog')
 async def uncog(ctx, extension):

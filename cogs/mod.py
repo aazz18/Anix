@@ -61,7 +61,7 @@ class Mod(commands.Cog):
     async def clear(self, ctx, amount=5):
         """>clear <amount>"""
         await ctx.channel.purge(limit=amount)
-        await good_info_channel(ctx, f"{amount} messages have been deleted.", "https://c.tenor.com/2T_mpBdB1kgAAAAM/discord-delete-message.gif")
+        await ctx.send(embed=discord.Embed(title=f":white_check_mark: {amount} messages have been deleted", color=discord.Color.green()).set_image(url="https://c.tenor.com/2T_mpBdB1kgAAAAM/discord-delete-message.gif").set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url), delete_after=5)
     @commands.command(name='mute', aliases=['m'], brief='Mutes a user from the server')
     @commands.has_permissions(mute_members=True)
     async def mute(self, ctx, member: discord.Member, *, reason=None):

@@ -1,3 +1,4 @@
+from ast import alias
 import random
 import discord
 from discord.ext.commands import Bot, errors
@@ -47,7 +48,7 @@ class Fun(commands.Cog):
         await info(ctx, "8ball", f"Question: {question}\nAnswer: {random.choice(answers)}")
     @commands.command(name="roll", aliases=['dice', 'random'], brief="Rolls a dice", description="Rolls a dice.")
     async def roll(self, ctx, dice=None):
-        ">roll <dice>"
+        """>roll <dice>"""
         await ctx.message.delete()
         if dice is None:
             dice = 6
@@ -55,14 +56,19 @@ class Fun(commands.Cog):
             await info(ctx, "Roll", f"You rolled a `{random.randint(1, int(dice))}`")
     @commands.command(name="flip", aliases=['coin'], brief="Flips a coin", description="Flips a coin.")
     async def flip(self, ctx):
-        ">flip"
+        """>flip"""
         await ctx.message.delete()
         await info(ctx, "Flip", f"You flipped a `{random.choice(['heads', 'tails'])}`")
-    @commands.command(name="dicksize", aliases=['dick, dicklength'], brief="Gets the size of your dick")
+    @commands.command(name="dicksize", aliases=['dick, dicklength'], brief="Gets the size of your dick.")
     async def dicksize(self, ctx):
-        ">dicksize"
+        """>dicksize"""
         await ctx.message.delete()
-        await info(ctx, ":eggplant: Dick", f"You measured your dick and your size was `{random.randint(1,20)}` inches long!")
+        await info(ctx, "Dick", f"You measured your dick and your size was `{random.randint(1,20)}` inches long!")
+    @commands.command(name='pfp', aliases=['profile_picture'], brief='Gets profile picture of an user.')
+    async def pfp(self, ctx, *, member:discord.Member):
+        """>pfp [user]"""
+        await ctx.message.delete()
+        await ctx.send(embed=discord.Embed(title="Flashed", description=f"You a took a picture of {ctx.author.name}.", color=discord.Color.blue(), image=ctx.author.avatar_url).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url))
 def setup(bot):
     bot.add_cog(Fun(bot))
     print("Fun cog loaded")

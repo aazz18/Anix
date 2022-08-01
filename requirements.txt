@@ -7,3 +7,4 @@ idna==3.3
 multidict==6.0.2
 typing_extensions==4.3.0
 yarl==1.7.2
+bs4

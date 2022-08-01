@@ -68,7 +68,8 @@ class Fun(commands.Cog):
     async def pfp(self, ctx, *, member:discord.Member):
         """>pfp [user]"""
         await ctx.message.delete()
-        await ctx.send(embed=discord.Embed(title="Flashed", description=f"You a took a picture of {member.name}.", color=discord.Color.blue()).set_image(member.avatar_url))
+        print(member.avatar_url)
+        await ctx.send(embed=discord.Embed(title="Flashed", description=f"You a took a picture of {member.name}.", color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url))
 def setup(bot):
     bot.add_cog(Fun(bot))
     print("Fun cog loaded")

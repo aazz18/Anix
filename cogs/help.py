@@ -47,7 +47,7 @@ class Help(commands.Cog):
 
             cogs_desc = ''
             for cog in self.bot.cogs:
-                if not "Errors" == cog and not 'Startup' == cog:
+                if not cog in modules_invisible:
                     cogs_desc += f'`{cog}` {self.bot.cogs[cog].__doc__}\n'
 
             emb.add_field(name='Modules', value=cogs_desc, inline=False)

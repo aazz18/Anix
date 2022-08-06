@@ -22,7 +22,7 @@ class Logger(commands.Cog):
             webhook = Webhook.from_url(str(webhook_link), adapter=AsyncWebhookAdapter(session))
             embed=discord.Embed(title=f"{message.guild.name}", description=f"in {message.channel.name}", color=discord.Color.blue(),timestamp=datetime.datetime.utcnow()).set_thumbnail(url=message.guild.icon_url)
             embed.add_field(name=f"Message", value=f"{message.content}", inline=False)
-            embed.add_field(name="", value=f"[Jump to message]({message.jump_url})", inline=False)
+            embed.add_field(name="Click here to jump to message", value=f"[Jump]({message.jump_url})", inline=False)
             embed.set_footer(text=f"Sent by {message.author.name}#{message.author.discriminator}", icon_url=message.author.avatar_url)
             await webhook.send(embed=embed,avatar_url='https://cdn.discordapp.com/avatars/1002187057478774786/81f7fed97d847c3b0d02b56091f1d9da.webp', username='Anix Logger')
         await self.bot.process_commands(message)

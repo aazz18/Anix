@@ -20,7 +20,7 @@ class Logger(commands.Cog):
             return
         async with aiohttp.ClientSession() as session:
             webhook = Webhook.from_url(str(webhook_link), adapter=AsyncWebhookAdapter(session))
-            embed=discord.Embed(title=f"{message.guild.name}", description=f"in {message.channel.name}", color=discord.Color.blue(),timestamp=datetime.datetime.utcnow()).set_thumbnail(url=message.guild.icon_url)
+            embed=discord.Embed(title=f"{message.guild.name}", description=f"in <#{message.channel.id}>", color=discord.Color.blue(),timestamp=datetime.datetime.utcnow()).set_thumbnail(url=message.guild.icon_url)
             embed.add_field(name=f"Message", value=f"{message.content}", inline=False)
             embed.add_field(name="Click here to jump to message", value=f"[Jump]({message.jump_url})", inline=False)
             embed.set_footer(text=f"Sent by {message.author.name}#{message.author.discriminator}", icon_url=message.author.avatar_url)

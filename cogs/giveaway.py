@@ -34,3 +34,6 @@ class Giveaway(commands.Cog):
         await winner.send(embed=await giveaway_embed(self, ctx, f"You won the giveaway!", f"{prize}", discord.Color.green(), f"Congrats {winner.name}#{winner.discriminator}"))
         await giveaway.delete()
 
+def setup(bot):
+    bot.add_cog(Giveaway(bot))
+    print('Giveaway cog loaded')

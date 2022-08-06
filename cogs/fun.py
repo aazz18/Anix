@@ -5,7 +5,7 @@ from discord.ext.commands import Bot, errors
 from discord.ext import commands
 import aiohttp
 async def info(ctx, title, description):
-    await ctx.send(embed=discord.Embed(title=title, description=description, color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url))
+    await ctx.send(embed=discord.Embed(description=description, color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url).set_author(icon_url="https://raw.githubusercontent.com/python-discord/branding/main/icons/checkmark/green-checkmark-dist.png", name=title))
 class Fun(commands.Cog):
     """Fun commands"""
     def __init__(self, bot):
@@ -17,7 +17,7 @@ class Fun(commands.Cog):
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://username-gen.herokuapp.com/") as resp:
                 username = await resp.json(content_type=None)
-                await info(ctx, ":tada: Nickname Changed", "Changed your nickname to `" + username + "`")
+                await info(ctx, "Nickname Changed", "Changed your nickname to `" + username + "`")
                 await ctx.author.edit(nick=username["username"])
     @commands.command(name="8ball", aliases=['8b'], brief="Answers a question", description="Answers a question with a random answer.")
     async def eightball(self, ctx, *, question):

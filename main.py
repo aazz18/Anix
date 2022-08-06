@@ -65,4 +65,4 @@ for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         bot.load_extension(f'cogs.{filename[:-3]}')
     
-bot.run("MTAwMzY1NzE3ODA1OTY1MzI5MQ.Gvt5Ou.MpCrILfhPM4TehWHhph-m1tHbK3-8n36P7BEEU")
+bot.run(os.environ.get('IS_HEROKU', None))

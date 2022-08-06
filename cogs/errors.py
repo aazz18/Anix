@@ -25,6 +25,8 @@ class Errors(commands.Cog):
             await send_embed(ctx, "Command not found.")
         elif isinstance(error, commands.MissingPermissions):
             await send_embed(ctx, "You do not have the required permissions to use this command.")
+        elif isinstance(error, commands.errors.NSFWChannelRequired):
+            await send_embed(ctx, "This command can only be used in NSFW channels.")
 def setup(bot):
     bot.add_cog(Errors(bot))
     print("Errors cog loaded")

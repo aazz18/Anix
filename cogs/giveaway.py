@@ -18,7 +18,7 @@ class Giveaway(commands.Cog):
 
 
     @commands.command(name='giveaway', aliases=['g', 'gw'])
-    @commands.has_permissions(giveaway=True)
+    @commands.has_permissions(administrator=True)
     async def giveaway(self, ctx, mins: int, *, prize:str, channel: discord.TextChannel = None):
         await ctx.message.delete()
         if channel is None:

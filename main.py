@@ -11,15 +11,15 @@ bot.remove_command('help')
 
 async def isowner(ctx):
     if ctx.author.id != bot.owner_id:
-        await ctx.send(embed=discord.Embed(title=":x: Error", description="You are not the owner of this bot.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
+        await ctx.send(embed=discord.Embed(description="You are not the owner of this bot.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
         return False
     return True
 
 async def done(ctx, message):
-    await ctx.send(embed=discord.Embed(title=":white_check_mark: Done", description=str(message), color=discord.Color.green()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
+    await ctx.send(embed=discord.Embed(description=str(message), color=discord.Color.green()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Done", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA"))
 
 async def not_found(ctx, extension):
-    await ctx.send(embed=discord.Embed(title=":x: Error", description=f"The cog `{extension}` was not found.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
+    await ctx.send(embed=discord.Embed(description=f"The cog `{extension}` was not found.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
 @bot.command(name='cog', description='Loads a cog', brief='Loads a cog')
 async def cog(ctx, extension):
     await ctx.message.delete()
@@ -37,7 +37,7 @@ async def clear_owner(ctx, amount=5):
     await ctx.message.delete()
     if await isowner(ctx):
         await ctx.channel.purge(limit=amount)
-        await ctx.send(embed=discord.Embed(title=f":white_check_mark: {amount} messages have been deleted", color=discord.Color.green()).set_image(url="https://c.tenor.com/2T_mpBdB1kgAAAAM/discord-delete-message.gif").set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url), delete_after=5)
+        await ctx.send(embed=discord.Embed(color=discord.Color.green(), delete_after=5).set_image(url="https://c.tenor.com/2T_mpBdB1kgAAAAM/discord-delete-message.gif").set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url)).set_author(name=f"{amount} messages have been deleted", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA")
     return
 @bot.command(name='uncog', description='Unloads a cog', brief='Unloads a cog')
 async def uncog(ctx, extension):

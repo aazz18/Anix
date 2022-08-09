@@ -41,9 +41,9 @@ class Help(commands.Cog):
             except AttributeError as e:
                 owner = owner
 
-            emb = discord.Embed(title='Commands and modules', color=general_color,
+            emb = discord.Embed(color=general_color,
                                 description=f'Use `{prefix}help <module/command>` to gain more information about that module '
-                                            f':smiley:\n')
+                                            f':smiley:\n').set_author(name="Commands and modules", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA")
 
             cogs_desc = ''
             for cog in self.bot.cogs:
@@ -81,9 +81,8 @@ class Help(commands.Cog):
                         emb.add_field(name=f"{command.brief}", value=command.brief, inline=False)
                         break
                     else:
-                        emb = discord.Embed(title="What's that?!",
-                                                description=f"I've never heard from a module/command called `{module}` before :scream:",
-                                                color=error_color)
+                        emb = discord.Embed(description=f"I've never heard from a module/command called `{module}` before :scream:",
+                                                color=error_color).set_author(name="What's that?!", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ")
 
         emb.set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url)
         await send_embed(ctx, emb)

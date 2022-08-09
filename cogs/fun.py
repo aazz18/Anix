@@ -5,7 +5,7 @@ from discord.ext.commands import Bot, errors
 from discord.ext import commands
 import aiohttp
 async def info(ctx, title, description):
-    await ctx.send(embed=discord.Embed(description=description, color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url).set_author(icon_url="https://raw.githubusercontent.com/python-discord/branding/main/icons/checkmark/green-checkmark-dist.png", name=title))
+    await ctx.send(embed=discord.Embed(description=description, color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url).set_author(name=title, icon_url="https://raw.githubusercontent.com/python-discord/branding/main/icons/checkmark/green-checkmark-dist.png"))
 class Fun(commands.Cog):
     """Fun commands"""
     def __init__(self, bot):

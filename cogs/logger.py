@@ -1,6 +1,5 @@
 import discord
 from discord import Webhook, AsyncWebhookAdapter
-from discord.ext.commands import Bot, errors
 from discord.ext import commands
 import aiohttp, datetime
 class Logger(commands.Cog):

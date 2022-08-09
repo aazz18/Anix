@@ -19,9 +19,14 @@ class Verify(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         while True:
+            try:
+                message.delete()
+            except discord.errors.NotFound:
+                pass
             if message.author.bot:
                 return
-            if message.channel.id == 1006614884718485555:
+            # find channel called verify
+            if message.channel.id == discord.utils.get(message.guild.channels, name=f'verify').id:
                 verifyRole = discord.utils.get(message.guild.roles, name="Verified")
                 if str(self.key) in message.content:
                     if verifyRole in message.author.roles:

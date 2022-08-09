@@ -37,3 +37,6 @@ class Verify(commands.Cog):
                     self.key = random.randint(100000, 999999)
                     await message.author.send(f"<@{message.author.id}> Your new verification key is `{self.key}`. Please verify yourself with the command `verify {self.key}` in the {message.guild.name} server. If you have any questions, please ask a staff member. Have fun!")
 
+def setup(bot):
+    bot.add_cog(Verify(bot))
+    print("Verify cog is loaded")

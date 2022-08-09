@@ -1,7 +1,5 @@
-from ast import alias
 import random
 import discord
-from discord.ext.commands import Bot, errors
 from discord.ext import commands
 import aiohttp
 async def info(ctx, title, description):

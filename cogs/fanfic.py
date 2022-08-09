@@ -1,8 +1,6 @@
 import discord
-from discord.ext.commands import Bot, errors
 from discord.ext import commands
 import aiohttp
-import asyncio
 import sqlite3
 from bs4 import BeautifulSoup
 async def good_info_channel(ctx, message, description, link):

@@ -14,12 +14,14 @@ async def bad_info_channel(ctx, message, description, link):
 class FanFic(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
-    async def create_database(self,ctx):
+    @staticmethod
+    async def create_database(ctx):
         conn = sqlite3.connect('data.db')
         c = conn.cursor()
         c.execute('''CREATE TABLE IF NOT EXISTS fanfic_finder (discord, fanfic_name)''')
         conn.close()
-    async def check_if_user_in_database(self, ctx):
+    @staticmethod
+    async def check_if_user_in_database(ctx):
         conn = sqlite3.connect('data.db')
         c = conn.cursor()
         c.execute('''SELECT fanfic_name FROM fanfic_finder WHERE discord = ?''', (ctx.author.id,))

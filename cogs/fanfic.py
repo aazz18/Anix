@@ -41,7 +41,7 @@ class FanFic(commands.Cog):
     @commands.command(name='fanfic', aliases=['"ff", "fanfic_finder", "fanfic_search", "fanfic_search_finder", "fanfic_search_finder_finder"'], brief='Generates a random fanfic based on your taste with a random fanfic from fanfiction.net', description='Generates a random fanfic based on your taste with a random fanfic from fanfiction.net')
     async def fanfic(self, ctx):
         """>fanfic"""
-        if await self.check_if_user_in_database(ctx) == False:
+        if await self.check_if_user_in_database(ctx) is False:
             await bad_info_channel(ctx, "You have not yet set a fanfic preference", "Please use the command `>fanfic_finder_set <fanfic name>` to set your fanfic preference", "https://i.imgur.com/XqQZQZg.png")
         conn = sqlite3.connect('data.db')
         c = conn.cursor()

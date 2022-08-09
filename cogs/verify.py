@@ -27,13 +27,15 @@ class Verify(commands.Cog):
                 verifyRole = discord.utils.get(message.guild.roles, name="Verified")
                 if message.content == self.key:
                     if verifyRole in message.author.roles:
-                        await message.author.send(embed=discord.Embed(description=f"You are already verified.", color=discord.Color.red()).set_footer(text=f"Requested by {message.author.name}", icon_url=message.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
+                        await message.author.send(f"<@{message.author.id}> You are already verified!")
+                        await self.bot.process_commands(message)
                         break
                     await message.author.add_roles(verifyRole)
-                    await message.author.send(embed=discord.Embed(description=f"You have been verified.", color=discord.Color.green()).set_footer(text=f"Requested by {message.author.name}", icon_url=message.author.avatar_url).set_author(name="Done", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA"))
+                    await message.author.send(f"<@{message.author.id}>You have been verified!")
+                    await self.bot.process_commands(message)
                     break
                 else:
-                    await message.author.send(embed=discord.Embed(description=f"You have entered an invalid key.", color=discord.Color.red()).set_footer(text=f"Requested by {message.author.name}", icon_url=message.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
+                    await message.author.send(f"<@{message.author.id}> Invalid key. Please try again.")
                     self.key = random.randint(100000, 999999)
                     await message.author.send(f"<@{message.author.id}> Your new verification key is `{self.key}`. Please verify yourself with the command `verify {self.key}` in the {message.guild.name} server. If you have any questions, please ask a staff member. Have fun!")
 

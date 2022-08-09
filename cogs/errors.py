@@ -3,7 +3,7 @@ import discord
 from discord.ext.commands import Bot, errors
 from discord.ext import commands
 async def send_embed(ctx, error):
-    await ctx.send(embed=discord.Embed(title=":x: Error", description=f"{error}", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
+    await ctx.send(embed=discord.Embed(description=f"{error}", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
 class Errors(commands.Cog):
     def __init__(self,bot):
         self.bot = bot

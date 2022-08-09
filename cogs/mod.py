@@ -1,13 +1,13 @@
 import discord
 from discord.ext import commands
 async def good_info_dm(member, message,link):
-    await member.send(embed=discord.Embed(color=discord.Color.green()).set_image(url=link)).set_author(name=f"{message}", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA")
+    await member.send(embed=discord.Embed(color=discord.Color.green()).set_image(url=link).set_author(name=f"{message}", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA"))
 
 async def good_info_channel(ctx, message,link):
-    await ctx.send(embed=discord.Embed(color=discord.Color.green()).set_image(url=link).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url)).set_author(name=f"{message}", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA")
+    await ctx.send(embed=discord.Embed(color=discord.Color.green()).set_image(url=link).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name=f"{message}", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA"))
 
 async def bad_info_dm(member, message,link):
-    await member.send(embed=discord.Embed(color=discord.Color.red()).set_image(url=link)).set_author(name=f"{message}", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ")
+    await member.send(embed=discord.Embed(color=discord.Color.red()).set_image(url=link).set_author(name=f"{message}", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
 
 async def bad_info_channel(ctx, message,link):
     await ctx.send(embed=discord.Embed(color=discord.Color.red()).set_image(url=link).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name=f"{message}", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
@@ -61,7 +61,7 @@ class Mod(commands.Cog):
     async def clear(self, ctx, amount=5):
         """>clear <amount>"""
         await ctx.channel.purge(limit=amount)
-        await ctx.send(embed=discord.Embed(color=discord.Color.green(), delete_after=5).set_image(url="https://c.tenor.com/2T_mpBdB1kgAAAAM/discord-delete-message.gif").set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url)).set_author(name=f"{amount} messages have been deleted", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA")
+        await ctx.send(embed=discord.Embed(color=discord.Color.green(), delete_after=5).set_image(url="https://c.tenor.com/2T_mpBdB1kgAAAAM/discord-delete-message.gif").set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name=f"{amount} messages have been deleted", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA"))
     @commands.command(name='mute', aliases=['m'], brief='Mutes a user from the server')
     @commands.has_permissions(mute_members=True)
     async def mute(self, ctx, member: discord.Member, *, reason=None):

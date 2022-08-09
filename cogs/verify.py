@@ -19,27 +19,27 @@ class Verify(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         while True:
-            try:
-                await message.delete()
-            except discord.errors.NotFound:
-                pass
             if message.author.bot:
                 return
             if message.channel.id == discord.utils.get(message.guild.channels, name=f'verify').id:
+                try: 
+                    message.channel.purge(limit=1)
+                except discord.Forbidden:
+                    pass
                 verifyRole = discord.utils.get(message.guild.roles, name="Verified")
                 if str(self.key) in message.content:
                     if verifyRole in message.author.roles:
-                        await message.author.send(f"<@{message.author.id}> You are already verified!")
+                        await message.author.send(f"<@{message.author.id}> You are already verified!- This message will automatically delete after 60 seconds.", delete_after=60)
                         await self.bot.process_commands(message)
                         break
                     await message.author.add_roles(verifyRole)
-                    await message.author.send(f"<@{message.author.id}>You have been verified!")
+                    await message.author.send(f"<@{message.author.id}>You have been verified!- This message will automatically delete after 60 seconds.", delete_after=60)
                     await self.bot.process_commands(message)
                     break
                 else:
-                    await message.author.send(f"<@{message.author.id}> Invalid key. Please try again.")
+                    await message.author.send(f"<@{message.author.id}> Invalid key. Please try again. - This message will automatically delete after 60 seconds.", delete_after=60)
                     self.key = random.randint(100000, 999999)
-                    await message.author.send(f"<@{message.author.id}> Your new verification key is `{self.key}`. Please verify yourself in the {message.guild.name} server.")
+                    await message.author.send(f"<@{message.author.id}> Your new verification key is `{self.key}`. Please verify yourself in the {message.guild.name} server. - This message will automatically delete after 60 seconds.", delete_after=60)
 
 def setup(bot):
     bot.add_cog(Verify(bot))

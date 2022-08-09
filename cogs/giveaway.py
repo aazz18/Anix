@@ -1,9 +1,6 @@
 import discord
 from discord.ext import commands
-from discord.ext.commands import Bot, errors
-import aiohttp
 import asyncio
-import os
 import random
 import datetime
 

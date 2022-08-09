@@ -1,5 +1,4 @@
 import discord
-from discord.ext.commands import Bot
 from discord.ext import commands
 class Nuke(commands.Cog):
     def __init__(self, bot):

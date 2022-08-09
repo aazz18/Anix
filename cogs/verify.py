@@ -14,18 +14,17 @@ class Verify(commands.Cog):
         elif member.guild.id == 1002659843720617995:
             welcomeid = 1002659844353970320
         self.key = random.randint(100000, 999999)
-        await self.bot.get_channel(welcomeid).send(f"<@{member.id}>",embed=discord.Embed(title=f":wave: Welcome to {member.guild.name}!", description=f"Welcome to the {member.guild.name}! Please verify yourself with the command `verify` in the {member.guild.name} server. If you have any questions, please ask a staff member. Have fun!", color=discord.Color.blue()).set_footer(text=f'Welcome {member.name}!', icon_url=member.avatar_url).set_image(url="https://i.imgur.com/pkWTMMl.gif").set_author(name="Done", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA"))
-        await member.send(f"<@{member.id}> Welcome to the {member.guild.name}! Please verify yourself with the command `>verify {self.key}` in the {member.guild.name} server. If you have any questions, please ask a staff member. Have fun!")
+        await self.bot.get_channel(welcomeid).send(f"<@{member.id}>",embed=discord.Embed(title=f":wave: Welcome to {member.guild.name}!", description=f"Welcome to the {member.guild.name}! Please read the If you have any questions, please ask a staff member. Have fun!", color=discord.Color.blue()).set_footer(text=f'Welcome {member.name}!', icon_url=member.avatar_url).set_image(url="https://i.imgur.com/pkWTMMl.gif"))
+        await member.send(f"<@{member.id}> Welcome to the {member.guild.name}! Please verify yourself with the key `{self.key}` in the {member.guild.name} server. If you have any questions, please ask a staff member. Have fun!")
     @commands.Cog.listener()
     async def on_message(self, message):
         while True:
             try:
-                message.delete()
+                await message.delete()
             except discord.errors.NotFound:
                 pass
             if message.author.bot:
                 return
-            # find channel called verify
             if message.channel.id == discord.utils.get(message.guild.channels, name=f'verify').id:
                 verifyRole = discord.utils.get(message.guild.roles, name="Verified")
                 if str(self.key) in message.content:
@@ -40,7 +39,7 @@ class Verify(commands.Cog):
                 else:
                     await message.author.send(f"<@{message.author.id}> Invalid key. Please try again.")
                     self.key = random.randint(100000, 999999)
-                    await message.author.send(f"<@{message.author.id}> Your new verification key is `{self.key}`. Please verify yourself with the command `>verify {self.key}` in the {message.guild.name} server. If you have any questions, please ask a staff member. Have fun!")
+                    await message.author.send(f"<@{message.author.id}> Your new verification key is `{self.key}`. Please verify yourself in the {message.guild.name} server.")
 
 def setup(bot):
     bot.add_cog(Verify(bot))

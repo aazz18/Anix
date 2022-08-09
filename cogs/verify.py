@@ -23,7 +23,7 @@ class Verify(commands.Cog):
                 return
             if message.channel.id == 1006614884718485555:
                 verifyRole = discord.utils.get(message.guild.roles, name="Verified")
-                if message.content == self.key:
+                if self.key in message.content:
                     if verifyRole in message.author.roles:
                         await message.author.send(f"<@{message.author.id}> You are already verified!")
                         await self.bot.process_commands(message)

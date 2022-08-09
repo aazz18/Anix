@@ -19,7 +19,6 @@ class Verify(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         while True:
-            await message.delete()
             if message.author.bot:
                 return
             if message.channel.id == 1006614884718485555:

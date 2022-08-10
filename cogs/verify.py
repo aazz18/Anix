@@ -18,10 +18,11 @@ class Verify(commands.Cog):
         await member.send(f"<@{member.id}> Welcome to the {member.guild.name}! Please verify yourself with the command `>verify {self.key}` in the {member.guild.name} server. - This message will automatically delete itself after 60 seconds.", delete_after=60)
     @commands.command(name='verify', aliases=['v'])
     async def verify(self, ctx, key):
+        await ctx.message.delete()
         verifyRole = discord.utils.get(ctx.guild.roles, name="Verified")
         if str(self.key) == key:
             if verifyRole in ctx.author.roles:
-                await ctx.author.send(f"<@{ctx.author.id}> You are already verified!- This message will automatically delete itself after 60 seconds.", delete_after=60)
+                await ctx.author.send(f"<@{ctx.author.id}> You are already verified! - This message will automatically delete itself after 60 seconds.", delete_after=60)
             await ctx.author.add_roles(verifyRole)
             await ctx.author.send(f"<@{ctx.author.id}>You have been verified! - This message will automatically delete itself after 60 seconds.", delete_after=60)
         else:

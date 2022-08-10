@@ -19,7 +19,10 @@ class Verify(commands.Cog):
     @commands.command(name='verify', aliases=['v'])
     async def verify(self, ctx, key):
         await ctx.message.delete()
-        verifyRole = discord.utils.get(ctx.guild.roles, name="Verified")
+        if ctx.guild.id == 1006599826315685888:
+            verifyRole = discord.utils.get(ctx.guild.roles, id=1006600830738243584)
+        else:
+            verifyRole = discord.utils.get(ctx.guild.roles, name="Verified")
         if str(self.key) == key:
             if verifyRole in ctx.author.roles:
                 await ctx.author.send(f"<@{ctx.author.id}> You are already verified! - This message will automatically delete itself after 60 seconds.", delete_after=60)

@@ -11,7 +11,6 @@ async def error(ctx, message):
     await ctx.send(embed=discord.Embed(description=f"There was an error: {message}", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
 async def isowner(ctx):
     if ctx.author.id != bot.owner_id:
-        await ctx.send(embed=discord.Embed(description="You are not the owner of this bot.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
         return False
     return True
 
@@ -22,7 +21,8 @@ async def not_found(ctx, extension):
     await ctx.send(embed=discord.Embed(description=f"The cog `{extension}` was not found.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
 @bot.command(name='shutdown', brief="Kills other instances of the bot")
 async def shutdown(ctx):
-    if await isowner(ctx):
+    await ctx.message.delete()
+    if await isowner(ctx) == True:
       try:
         await bot.logout()
       except:
@@ -32,7 +32,7 @@ async def shutdown(ctx):
 async def cog(ctx, extension):
     await ctx.message.delete()
     """>cog <cog> - Owner only"""
-    if await isowner(ctx):
+    if await isowner(ctx) == True:
         try:
             bot.load_extension(f'cogs.{extension}')
             await done(ctx, f'Cog `{extension}` loaded')
@@ -43,7 +43,7 @@ async def cog(ctx, extension):
 async def clear_owner(ctx, amount=5):
     """>clear_owner <amount> - Owner only"""
     await ctx.message.delete()
-    if await isowner(ctx):
+    if await isowner(ctx) == True:
         await ctx.channel.purge(limit=amount)
         await ctx.send(embed=discord.Embed(color=discord.Color.green(), delete_after=5).set_image(url="https://c.tenor.com/2T_mpBdB1kgAAAAM/discord-delete-message.gif").set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url)).set_author(name=f"{amount} messages have been deleted", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA")
     return
@@ -51,7 +51,7 @@ async def clear_owner(ctx, amount=5):
 async def uncog(ctx, extension):
     """>uncog <cog> - Owner only"""
     await ctx.message.delete()
-    if await isowner(ctx):
+    if await isowner(ctx) == True:
         try:
             bot.unload_extension(f'cogs.{extension}')
             await done(ctx, f'Cog `{extension}` unloaded')
@@ -62,7 +62,7 @@ async def uncog(ctx, extension):
 async def reload(ctx, extension):
     """>reloadcog <cog> - Owner only"""
     await ctx.message.delete()
-    if await isowner(ctx):
+    if await isowner(ctx) == True:
         try:
             bot.reload_extension(f'cogs.{extension}')
             await done(ctx, f'Cog `{extension}` reloaded')

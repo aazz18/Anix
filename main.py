@@ -24,7 +24,7 @@ async def shutdown(ctx):
     await ctx.message.delete()
     if await isowner(ctx) == True:
       try:
-        await bot.logout()
+        await bot.close()
       except:
         await error("EnvironmentError")
         bot.clear()

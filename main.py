@@ -7,7 +7,8 @@ intents.members = True
 
 bot = commands.Bot(command_prefix='>', description='A bot for the Discord server', case_insensitive=True, activity=discord.Activity(type=discord.ActivityType.watching, name="<3"), owner_id=1003654642309279874, intents=intents)
 bot.remove_command('help')
-
+async def error(ctx, message):
+    await ctx.send(embed=discord.Embed(description=f"There was an error: {message}", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
 async def isowner(ctx):
     if ctx.author.id != bot.owner_id:
         await ctx.send(embed=discord.Embed(description="You are not the owner of this bot.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
@@ -19,6 +20,14 @@ async def done(ctx, message):
 
 async def not_found(ctx, extension):
     await ctx.send(embed=discord.Embed(description=f"The cog `{extension}` was not found.", color=discord.Color.red()).set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
+@bot.command(name='shutdown', brief="Kills other instances of the bot")
+async def shutdown(ctx):
+    if await isowner(ctx):
+      try:
+        await bot.logout()
+      except:
+        await error("EnvironmentError")
+        bot.clear()
 @bot.command(name='cog', description='Loads a cog', brief='Loads a cog')
 async def cog(ctx, extension):
     await ctx.message.delete()

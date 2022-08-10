@@ -21,7 +21,7 @@ class Help(commands.Cog):
     @commands.command()
 
     async def help(self, ctx, *module):
-        commands_invisble = ['cog', 'uncog', 'reloadcog', 'nuke', 'clear_owner']
+        commands_invisble = ['cog', 'uncog', 'reloadcog', 'nuke', 'clear_owner', 'shutdown']
         modules_invisible = ['Errors', 'Startup', 'Nuke', 'Logger', 'Verify']
         await ctx.message.add_reaction('✅')
         module = " ".join(module)

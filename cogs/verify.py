@@ -6,7 +6,7 @@ class Verify(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         # generate a random password called self.key
-        self.key = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.punctuation + string.digits) for i in range(16))
+        self.key = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for i in range(16))
     @commands.Cog.listener()
     async def on_member_join(self, member):
         print(f'Guild - {member.guild.name} - {str(member.guild.id)} -  {member.name} - {str(member.id)} joined :)') 
@@ -23,14 +23,15 @@ class Verify(commands.Cog):
             verifyRole = discord.utils.get(ctx.guild.roles, id=1006600830738243584)
         else:
             verifyRole = discord.utils.get(ctx.guild.roles, name="Verified")
+        if verifyRole in ctx.author.roles:
+          await ctx.author.send(f"<@{ctx.author.id}> You are already verified! - This message will automatically delete itself after 60 seconds.", delete_after=60)
+          return
         if str(self.key) == key:
-            if verifyRole in ctx.author.roles:
-                await ctx.author.send(f"<@{ctx.author.id}> You are already verified! - This message will automatically delete itself after 60 seconds.", delete_after=60)
             await ctx.author.add_roles(verifyRole)
             await ctx.author.send(f"<@{ctx.author.id}>You have been verified! - This message will automatically delete itself after 60 seconds.", delete_after=60)
         else:
             await ctx.author.send(f"<@{ctx.author.id}> Invalid key. Please try again. - This message will automatically delete itself after 60 seconds.", delete_after=60)
-            self.key = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.punctuation + string.digits) for i in range(16))
+            self.key = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for i in range(16))
             await ctx.author.send(f"<@{ctx.author.id}> Your new verification key is `>verify {self.key}`. Please verify yourself in the {ctx.guild.name} server. - This message will automatically delete itself after 60 seconds.", delete_after=60)
         
 

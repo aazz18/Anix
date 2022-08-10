@@ -12,7 +12,7 @@ class Giveaway(commands.Cog):
     """Giveaway commands"""
     def __init__(self,bot):
         self.bot = bot
-    @commands.command(name='giveaway', aliases=['g', 'gw'])
+    @commands.command(name='giveaway_start', aliases=['g', 'gw'])
     @commands.has_permissions(administrator=True)
     async def giveaway(self, ctx, mins: int, *, prize:str, channel: discord.TextChannel = None):
         await ctx.message.delete()

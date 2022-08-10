@@ -4,14 +4,14 @@ from discord.errors import Forbidden
 async def send_embed(ctx, embed):
     
     try:
-        await ctx.author.send(embed=embed)
+        await ctx.send(embed=embed)
     except Forbidden:
         try:
-            await ctx.author.send("Hey, seems like I can't send embeds. Please check my permissions :)")
+            await ctx.send("Hey, seems like I can't send embeds. Please check my permissions :)")
         except Forbidden:
-            await ctx.send(
-                f"Hey, seems like I can't send any message to {ctx.author.mention}\n"
-                f"May you inform the user about this issue? :slight_smile: ", embed=embed)
+            await ctx.author.send(
+                f"Hey, seems like I can't send any message in {ctx.channel.name} on {ctx.guild.name}\n"
+                f"May you inform the server team about this issue? :slight_smile: ", embed=embed)
 class Help(commands.Cog):
     """Sends this help message"""
 
@@ -23,7 +23,7 @@ class Help(commands.Cog):
     async def help(self, ctx, *module):
         commands_invisble = ['cog', 'uncog', 'reloadcog', 'nuke', 'clear_owner', 'shutdown']
         modules_invisible = ['Errors', 'Startup', 'Nuke', 'Logger', 'Verify']
-        await ctx.message.add_reaction('✅')
+        await ctx.message.delete()
         module = " ".join(module)
 	
         prefix = ">"

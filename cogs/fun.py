@@ -1,3 +1,4 @@
+from ast import alias
 import random
 import discord
 from discord.ext import commands
@@ -15,7 +16,7 @@ class Fun(commands.Cog):
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://username-gen.herokuapp.com/") as resp:
                 username = await resp.json(content_type=None)
-                await info(ctx, "Nickname Changed", "Changed your nickname to `" + username + "`")
+                await info(ctx, "Nickname Changed", "Changed your nickname to `" + username["username"] + "`")
                 await ctx.author.edit(nick=username["username"])
     @commands.command(name="8ball", aliases=['8b'], brief="Answers a question", description="Answers a question with a random answer.")
     async def eightball(self, ctx, *, question):
@@ -69,6 +70,14 @@ class Fun(commands.Cog):
         embed=discord.Embed(title="Flashed", description=f"You a took a picture of {member.name}.", color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url)
         embed.set_image(url=member.avatar_url)
         await ctx.send(embed=embed)
+    @commands.command(name='meme', aliases=['gen_meme'], brief='Generates a random meme from Reddit.')
+    async def meme(self,ctx):
+        """>meme"""
+        await ctx.message.delete()
+        async with aiohttp.ClientSession() as session:
+            async with session.get("https://meme-api.herokuapp.com/gimme") as resp:
+                meme = await resp.json(content_type=None)
+                await ctx.send(embed=discord.Embed(title=meme["title"], description=f"**Subreddit:** {meme['subreddit']}\n**Author:** {meme['author']}\n**Post Link:** {meme['postLink']}", color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url).set_image(url=meme["url"]))
 def setup(bot):
     bot.add_cog(Fun(bot))
     print("Fun cog loaded")

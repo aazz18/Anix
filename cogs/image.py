@@ -249,4 +249,6 @@ class Images(commands.Cog):
                 img.save('wave.png')
                 await ctx.send(file=discord.File('wave.png'))
                 os.remove('wave.png')
-    
+def setup(bot):
+    bot.add_cog(Image(bot))
+    print('Image cog is loaded.')

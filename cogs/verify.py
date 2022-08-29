@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from PIL import Image, ImageFilter, ImageEnhance, ImageOps, ImageDraw, ImageFont
 import random
 import string
 class Verify(commands.Cog):
@@ -15,7 +16,7 @@ class Verify(commands.Cog):
         elif member.guild.id == 1002659843720617995:
             welcomeid = 1002659844353970320
         await self.bot.get_channel(welcomeid).send(f"<@{member.id}>",embed=discord.Embed(title=f":wave: Welcome to {member.guild.name}!", description=f"Welcome to the {member.guild.name}! Please read the rules. If you have any questions, please ask a staff member. Have fun!", color=discord.Color.blue()).set_footer(text=f'Welcome {member.name}!', icon_url=member.avatar_url).set_image(url="https://i.imgur.com/pkWTMMl.gif"))
-        await member.send(f"<@{member.id}>",embed=discord.Embed(title=f":wave: Welcome to {member.guild.name}!", description=f"Welcome to the {member.guild.name}! Please verify yourself with the verification command `>verify {self.key}`.", color=discord.Color.blue()).set_footer(text=f'Welcome {member.name}!', icon_url=member.avatar_url).set_image(url="https://i.imgur.com/pkWTMMl.gif"))
+        await member.send(f"<@{member.id}>",embed=discord.Embed(title=f":wave: Welcome to {member.guild.name}!", description=f"Welcome to the {member.guild.name}! Please verify yourself with the verification command `>verify {self.key}`.", color=discord.Color.blue()).set_footer(text=f'Welcome {member.name}!', icon_url=member.avatar_url).set_image())
     @commands.command(name='verify', aliases=['v'])
     async def verify(self, ctx, key):
         await ctx.message.delete()
@@ -26,6 +27,7 @@ class Verify(commands.Cog):
         if verifyRole in ctx.author.roles:
           await ctx.author.send(f"<@{ctx.author.id}>", delete_after=60, embed=discord.Embed(description="You are already verified!", color=discord.Color.red()).set_footer(text=f"This message will automatically delete itself after 60 seconds.", icon_url=ctx.author.avatar_url).set_author(name="Error", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/crossmark-red.png?token=GHSAT0AAAAAABV3GFY4J4T3G6OGZTZLGGXQYXOQENQ"))
           return
+        
         if str(self.key) == key:
             await ctx.author.add_roles(verifyRole)
             await ctx.author.send(f"<@{ctx.author.id}>",delete_after=60, embed=discord.Embed(description="You have been verified!", color=discord.Color.green()).set_footer(text=f"This message will automatically delete itself after 60 seconds.", icon_url=ctx.author.avatar_url).set_author(name="Verified", icon_url="https://raw.githubusercontent.com/CriticRay/anix-images/main/checkmark-green.png?token=GHSAT0AAAAAABV3GFY562BKGYAAD6XVUZCYYXSUEMA"))

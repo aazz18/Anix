@@ -1,4 +1,3 @@
-from ast import alias
 import random
 import discord
 from discord.ext import commands
@@ -78,6 +77,38 @@ class Fun(commands.Cog):
             async with session.get("https://meme-api.herokuapp.com/gimme") as resp:
                 meme = await resp.json(content_type=None)
                 await ctx.send(embed=discord.Embed(title=meme["title"], description=f"**Subreddit:** {meme['subreddit']}\n**Author:** {meme['author']}\n**Post Link:** {meme['postLink']}", color=discord.Color.blue()).set_footer(text=f'Requested by {ctx.author.name}', icon_url=ctx.author.avatar_url).set_image(url=meme["url"]))
+    @commands.command(name='math', brief='Solves a math equation.', aliases=['calc', 'calculate'])
+    async def math(self, ctx, *, equation):
+        """>math <equation>"""
+        await ctx.message.delete()
+        await info(ctx, "Math", f"{equation} = {eval(equation)}")
+    @commands.command(name='urban', brief='Searches the Urban Dictionary.', aliases=['urbandictionary', 'ud', 'urbandict'])
+    async def urban(self, ctx, *, word):
+        """>urban <word>"""
+        await ctx.message.delete()
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"http://api.urbandictionary.com/v0/define?term={word}") as resp:
+                data = await resp.json(content_type=None)
+                if data["list"] == []:
+                    await info(ctx, "Urban Dictionary", f"No results found for `{word}`")
+                else:
+                    await info(ctx, "Urban Dictionary", f"{data['list'][0]['definition']}")
+    @commands.command(name='wiki', brief='Searches the Wikipedia.', aliases=['w', 'wikipedia'])
+    async def wiki(self, ctx, *, search):
+        """>wiki <search>"""
+        await ctx.message.delete()
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"https://en.wikipedia.org/w/api.php?action=opensearch&search={search}&format=json") as resp:
+                data = await resp.json(content_type=None)
+                if data[1] == []:
+                    await info(ctx, "Wikipedia", f"No results found for `{search}`")
+                else:
+                    await info(ctx, "Wikipedia", f"{data[1][0]} - {data[2][0]}")
+    @commands.command(name='reverse', brief='Reverses a string.', aliases=['reverse_string'])
+    async def reverse(self, ctx, *, string):
+        """>reverse <string>"""
+        await ctx.message.delete()
+        await info(ctx, "Reverse", f"{string[::-1]}")
 def setup(bot):
     bot.add_cog(Fun(bot))
     print("Fun cog loaded")
